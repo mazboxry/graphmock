@@ -2,6 +2,7 @@ extends GraphNode
 class_name MockNode
 
 var node_color: Color = Color(0.2, 0.2, 0.2, 0.8)
+var graphmock_id: String = ""
 
 # Array of dictionaries holding row data
 var items: Array[Dictionary] = []
@@ -9,9 +10,11 @@ var items: Array[Dictionary] = []
 func _ready():
 	# Let GraphEdit handle dragging and resizing
 	resizable = true
+	resize_request.connect(_on_resize_request)
 	_update_visuals()
 	
-	# Connect internal signals if needed, but resize_request is handled if resizable = true
+func _on_resize_request(new_size: Vector2):
+	size = new_size
 
 func set_node_title(new_title: String):
 	title = new_title
@@ -50,6 +53,45 @@ func set_node_color(color: Color):
 	add_theme_stylebox_override("panel_selected", sb_selected)
 	add_theme_stylebox_override("titlebar", sb_titlebar)
 	add_theme_stylebox_override("titlebar_selected", sb_titlebar_sel)
+
+func to_save_dict() -> Dictionary:
+	var saved_items: Array = []
+	for item in items:
+		var saved_item: Dictionary = item.duplicate(true)
+		if saved_item.has("color"):
+			saved_item["color"] = _color_to_array(saved_item["color"])
+		saved_items.append(saved_item)
+	
+	return {
+		"id": graphmock_id,
+		"name": name,
+		"title": title,
+		"position_offset": _vector2_to_array(position_offset),
+		"size": _vector2_to_array(size),
+		"node_color": _color_to_array(node_color),
+		"items": saved_items
+	}
+
+func from_save_dict(data: Dictionary) -> void:
+	graphmock_id = str(data.get("id", ""))
+	name = str(data.get("name", graphmock_id if graphmock_id != "" else "MockNode"))
+	title = str(data.get("title", "ノード"))
+	position_offset = _array_to_vector2(data.get("position_offset", [0.0, 0.0]))
+	node_color = _array_to_color(data.get("node_color", [0.2, 0.2, 0.2, 0.8]))
+	
+	items.clear()
+	var saved_items = data.get("items", [])
+	if saved_items is Array:
+		for saved_item in saved_items:
+			if saved_item is Dictionary:
+				var item: Dictionary = saved_item.duplicate(true)
+				if item.has("color"):
+					item["color"] = _array_to_color(item["color"])
+				items.append(item)
+	
+	_update_visuals()
+	_rebuild_ui()
+	size = _array_to_vector2(data.get("size", size))
 
 func add_port(port_name: String, is_input: bool, is_output: bool, color: Color = Color.WHITE):
 	items.append({
@@ -131,3 +173,19 @@ func _rebuild_ui():
 
 func _update_visuals():
 	set_node_color(node_color)
+
+static func _color_to_array(color: Color) -> Array:
+	return [color.r, color.g, color.b, color.a]
+
+static func _array_to_color(value, fallback: Color = Color.WHITE) -> Color:
+	if value is Array and value.size() >= 4:
+		return Color(float(value[0]), float(value[1]), float(value[2]), float(value[3]))
+	return fallback
+
+static func _vector2_to_array(value: Vector2) -> Array:
+	return [value.x, value.y]
+
+static func _array_to_vector2(value, fallback: Vector2 = Vector2.ZERO) -> Vector2:
+	if value is Array and value.size() >= 2:
+		return Vector2(float(value[0]), float(value[1]))
+	return fallback
