@@ -1,0 +1,540 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0007",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0007",
+			"from_port": 1,
+			"to_node_id": "node_0008",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0008",
+			"from_port": 2,
+			"to_node_id": "node_0009",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0008",
+			"from_port": 1,
+			"to_node_id": "node_0009",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0009",
+			"from_port": 0,
+			"to_node_id": "node_0010",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0005",
+			"from_port": 1,
+			"to_node_id": "node_0006",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0010",
+			"from_port": 2,
+			"to_node_id": "node_0011",
+			"to_port": 0
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			310.5029296875,
+			-88.314697265625
+		],
+		"zoom": 1.59720015525818
+	},
+	"nodes": [
+		{
+			"id": "node_0004",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0004",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				200.0,
+				160.0
+			],
+			"size": [
+				112.0,
+				78.0
+			],
+			"title": "START"
+		},
+		{
+			"id": "node_0005",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.7890625,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "溜め",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.390625,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "連打",
+					"type": "port"
+				}
+			],
+			"name": "node_0005",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				420.0,
+				20.0
+			],
+			"size": [
+				64.0,
+				159.0
+			],
+			"title": "パンチ"
+		},
+		{
+			"id": "node_0006",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"name": "ブーストパンチ",
+					"prop_type": "string",
+					"type": "property"
+				}
+			],
+			"name": "node_0006",
+			"node_color": [
+				0.93359375,
+				0.0,
+				0.0,
+				0.800000011920929
+			],
+			"position_offset": [
+				600.0,
+				-20.0
+			],
+			"size": [
+				196.0,
+				113.0
+			],
+			"title": "必殺技"
+		},
+		{
+			"id": "node_0007",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "上",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "下",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "右",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "左",
+					"type": "port"
+				}
+			],
+			"name": "node_0007",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				400.0,
+				240.0
+			],
+			"size": [
+				96.0,
+				186.0
+			],
+			"title": "スティック"
+		},
+		{
+			"id": "node_0008",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "上",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "下",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "右",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "左",
+					"type": "port"
+				}
+			],
+			"name": "node_0008",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				560.0,
+				240.0
+			],
+			"size": [
+				96.0,
+				186.0
+			],
+			"title": "スティック"
+		},
+		{
+			"id": "node_0009",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "IN1",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "IN2",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0009",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				740.0,
+				240.0
+			],
+			"size": [
+				80.0,
+				139.999969482422
+			],
+			"title": "AND"
+		},
+		{
+			"id": "node_0010",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "上",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "下",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "右",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "左",
+					"type": "port"
+				}
+			],
+			"name": "node_0010",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				880.0,
+				240.0
+			],
+			"size": [
+				96.0,
+				186.0
+			],
+			"title": "スティック"
+		},
+		{
+			"id": "node_0011",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "",
+					"type": "port"
+				},
+				{
+					"name": "強いビーム",
+					"prop_type": "string",
+					"type": "property"
+				}
+			],
+			"name": "node_0011",
+			"node_color": [
+				0.99609375,
+				0.0,
+				0.0,
+				0.800000011920929
+			],
+			"position_offset": [
+				1020.0,
+				240.0
+			],
+			"size": [
+				164.0,
+				113.0
+			],
+			"title": "必殺技"
+		}
+	],
+	"version": 1
+}

@@ -438,7 +438,8 @@ func _deserialize_graph(data: Dictionary) -> void:
 				continue
 			if from_port < 0 or to_port < 0:
 				continue
-			if from_port >= from_node.items.size() or to_port >= to_node.items.size():
+			if from_port >= from_node.get_output_port_count() or to_port >= to_node.get_input_port_count():
+				printerr("警告: 無効なポート番号のため接続をスキップしました: %s:%d -> %s:%d" % [from_node.name, from_port, to_node.name, to_port])
 				continue
 			graph_edit.connect_node(from_node.name, from_port, to_node.name, to_port)
 	
@@ -612,7 +613,7 @@ func _get_tutorial_data() -> Dictionary:
 			},
 			{
 				"from_node_id": "node_0002",
-				"from_port": 2,
+				"from_port": 0,
 				"to_node_id": "node_0003",
 				"to_port": 0
 			}
