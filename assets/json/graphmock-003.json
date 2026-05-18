@@ -1,0 +1,315 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0007",
+			"from_port": 0,
+			"to_node_id": "node_0004",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0004:bottom",
+			"from_port": 0,
+			"to_node_id": "node_0005:top",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0008",
+			"to_port": 0
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			0.0,
+			0.0
+		],
+		"zoom": 1.0
+	},
+	"nodes": [
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0006",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0006",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				160.0,
+				60.0
+			],
+			"size": [
+				176.0,
+				105.0
+			],
+			"title": "上下ポート　サンプル",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0007",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0007",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				60.0,
+				240.0
+			],
+			"size": [
+				73.0,
+				78.0
+			],
+			"title": "ボタン1",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": true,
+			"has_top_port": false,
+			"id": "node_0004",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "条件",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "分岐",
+					"type": "port"
+				}
+			],
+			"name": "node_0004",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				260.0,
+				200.0
+			],
+			"size": [
+				80.0,
+				105.0
+			],
+			"title": "スタート",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0008",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0008",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				440.0,
+				220.0
+			],
+			"size": [
+				112.0,
+				105.0
+			],
+			"title": "処理2",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": true,
+			"id": "node_0005",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0005",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				280.0,
+				420.0
+			],
+			"size": [
+				80.0,
+				105.0
+			],
+			"title": "おしまい",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	],
+	"version": 1
+}

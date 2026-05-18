@@ -38,7 +38,9 @@ func set_has_top_port(enabled: bool):
 			_top_satellite.name = name + "_top"
 			if get_parent():
 				get_parent().add_child(_top_satellite)
-			_top_satellite.set_slot(0, true, 0, top_port_color, true, 0, top_port_color)
+			#top スロットは左ポートのみ
+	
+			_top_satellite.set_slot(0, true, 0, top_port_color, false, 0, top_port_color)
 	else:
 		if _top_satellite and is_instance_valid(_top_satellite):
 			_top_satellite.queue_free()
@@ -52,7 +54,8 @@ func set_has_bottom_port(enabled: bool):
 			_bottom_satellite.name = name + "_bottom"
 			if get_parent():
 				get_parent().add_child(_bottom_satellite)
-			_bottom_satellite.set_slot(0, true, 0, bottom_port_color, true, 0, bottom_port_color)
+			#bottom スロットは右ポートのみ
+			_bottom_satellite.set_slot(0, false, 0, bottom_port_color, true, 0, bottom_port_color)
 	else:
 		if _bottom_satellite and is_instance_valid(_bottom_satellite):
 			_bottom_satellite.queue_free()
@@ -61,12 +64,18 @@ func set_has_bottom_port(enabled: bool):
 func set_top_port_color(color: Color):
 	top_port_color = color
 	if _top_satellite and is_instance_valid(_top_satellite):
-		_top_satellite.set_slot(0, true, 0, color, true, 0, color)
+		#_top_satellite.set_slot(0, true, 0, color, true, 0, color)
+		#top スロットは左ポートのみ
+
+		_top_satellite.set_slot(0, true, 0, color, false, 0, color)
 
 func set_bottom_port_color(color: Color):
 	bottom_port_color = color
 	if _bottom_satellite and is_instance_valid(_bottom_satellite):
-		_bottom_satellite.set_slot(0, true, 0, color, true, 0, color)
+		#_bottom_satellite.set_slot(0, true, 0, color, true, 0, color)
+		#bottom スロットは右ポートのみ
+
+		_bottom_satellite.set_slot(0, false, 0, color, true, 0, color)
 	
 func _on_resize_request(new_size: Vector2):
 	size = new_size
