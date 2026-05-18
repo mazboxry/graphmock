@@ -3,15 +3,70 @@ class_name MockNode
 
 var node_color: Color = Color(0.2, 0.2, 0.2, 0.8)
 var graphmock_id: String = ""
-
 # Array of dictionaries holding row data
 var items: Array[Dictionary] = []
+
+var has_top_port: bool = false
+var has_bottom_port: bool = false
+var top_port_color: Color = Color.WHITE
+var bottom_port_color: Color = Color.WHITE
+
+var _top_satellite: GraphNode = null
+var _bottom_satellite: GraphNode = null
 
 func _ready():
 	# Let GraphEdit handle dragging and resizing
 	resizable = true
 	resize_request.connect(_on_resize_request)
 	_update_visuals()
+	set_process(true)
+	
+func _process(_delta):
+	_sync_satellites()
+
+func _sync_satellites():
+	if _top_satellite and is_instance_valid(_top_satellite):
+		_top_satellite.position_offset = position_offset + Vector2((size.x - _top_satellite.size.x) / 2, -_top_satellite.size.y - 4)
+	if _bottom_satellite and is_instance_valid(_bottom_satellite):
+		_bottom_satellite.position_offset = position_offset + Vector2((size.x - _bottom_satellite.size.x) / 2, size.y + 4)
+
+func set_has_top_port(enabled: bool):
+	has_top_port = enabled
+	if enabled:
+		if not _top_satellite or not is_instance_valid(_top_satellite):
+			_top_satellite = SatelliteNode.new()
+			_top_satellite.name = name + "_top"
+			if get_parent():
+				get_parent().add_child(_top_satellite)
+			_top_satellite.set_slot(0, true, 0, top_port_color, true, 0, top_port_color)
+	else:
+		if _top_satellite and is_instance_valid(_top_satellite):
+			_top_satellite.queue_free()
+			_top_satellite = null
+
+func set_has_bottom_port(enabled: bool):
+	has_bottom_port = enabled
+	if enabled:
+		if not _bottom_satellite or not is_instance_valid(_bottom_satellite):
+			_bottom_satellite = SatelliteNode.new()
+			_bottom_satellite.name = name + "_bottom"
+			if get_parent():
+				get_parent().add_child(_bottom_satellite)
+			_bottom_satellite.set_slot(0, true, 0, bottom_port_color, true, 0, bottom_port_color)
+	else:
+		if _bottom_satellite and is_instance_valid(_bottom_satellite):
+			_bottom_satellite.queue_free()
+			_bottom_satellite = null
+
+func set_top_port_color(color: Color):
+	top_port_color = color
+	if _top_satellite and is_instance_valid(_top_satellite):
+		_top_satellite.set_slot(0, true, 0, color, true, 0, color)
+
+func set_bottom_port_color(color: Color):
+	bottom_port_color = color
+	if _bottom_satellite and is_instance_valid(_bottom_satellite):
+		_bottom_satellite.set_slot(0, true, 0, color, true, 0, color)
 	
 func _on_resize_request(new_size: Vector2):
 	size = new_size
@@ -69,7 +124,11 @@ func to_save_dict() -> Dictionary:
 		"position_offset": _vector2_to_array(position_offset),
 		"size": _vector2_to_array(size),
 		"node_color": _color_to_array(node_color),
-		"items": saved_items
+		"items": saved_items,
+		"has_top_port": has_top_port,
+		"has_bottom_port": has_bottom_port,
+		"top_port_color": _color_to_array(top_port_color),
+		"bottom_port_color": _color_to_array(bottom_port_color)
 	}
 
 func from_save_dict(data: Dictionary) -> void:
@@ -92,6 +151,21 @@ func from_save_dict(data: Dictionary) -> void:
 	_update_visuals()
 	_rebuild_ui()
 	size = _array_to_vector2(data.get("size", size))
+	
+	has_top_port = data.get("has_top_port", false)
+	has_bottom_port = data.get("has_bottom_port", false)
+	top_port_color = _array_to_color(data.get("top_port_color", [1.0, 1.0, 1.0, 1.0]))
+	bottom_port_color = _array_to_color(data.get("bottom_port_color", [1.0, 1.0, 1.0, 1.0]))
+	
+	# Delay satellite creation until we are in the tree
+	if is_inside_tree():
+		set_has_top_port(has_top_port)
+		set_has_bottom_port(has_bottom_port)
+	else:
+		tree_entered.connect(func():
+			set_has_top_port(has_top_port)
+			set_has_bottom_port(has_bottom_port)
+		, CONNECT_ONE_SHOT)
 
 func add_port(port_name: String, is_input: bool, is_output: bool, color: Color = Color.WHITE):
 	items.append({
@@ -189,3 +263,26 @@ static func _array_to_vector2(value, fallback: Vector2 = Vector2.ZERO) -> Vector
 	if value is Array and value.size() >= 2:
 		return Vector2(float(value[0]), float(value[1]))
 	return fallback
+
+# --- Internal Satellite Node Class ---
+class SatelliteNode extends GraphNode:
+	func _init():
+		title = ""
+		resizable = false
+		draggable = false
+		custom_minimum_size = Vector2(24, 24)
+		size = Vector2(24, 24)
+		
+		# Transparent background for the satellite itself
+		var sb = StyleBoxFlat.new()
+		sb.bg_color = Color(0, 0, 0, 0)
+		sb.draw_center = false
+		add_theme_stylebox_override("panel", sb)
+		add_theme_stylebox_override("panel_selected", sb)
+		add_theme_stylebox_override("titlebar", sb)
+		add_theme_stylebox_override("titlebar_selected", sb)
+		
+		# Dummy child to hold the slot
+		var control = Control.new()
+		control.custom_minimum_size = Vector2(16, 16)
+		add_child(control)

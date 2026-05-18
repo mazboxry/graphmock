@@ -200,6 +200,42 @@ func _build_inspector():
 	color_hbox.add_child(color_picker)
 	inspector_vbox.add_child(color_hbox)
 	
+	# Vertical Ports UI
+	inspector_vbox.add_child(HSeparator.new())
+	var vp_lbl = Label.new()
+	vp_lbl.text = "垂直ポート (ナビ風)"
+	inspector_vbox.add_child(vp_lbl)
+	
+	# Top Port
+	var top_hbox = HBoxContainer.new()
+	var top_cb = CheckBox.new()
+	top_cb.text = "上ポート"
+	top_cb.button_pressed = selected_node.has_top_port
+	top_cb.toggled.connect(func(pressed): selected_node.set_has_top_port(pressed))
+	var top_cp = ColorPickerButton.new()
+	top_cp.color = selected_node.top_port_color
+	top_cp.custom_minimum_size.x = 40
+	top_cp.color_changed.connect(func(color): selected_node.set_top_port_color(color))
+	top_hbox.add_child(top_cb)
+	top_hbox.add_child(top_cp)
+	inspector_vbox.add_child(top_hbox)
+	
+	# Bottom Port
+	var bot_hbox = HBoxContainer.new()
+	var bot_cb = CheckBox.new()
+	bot_cb.text = "下ポート"
+	bot_cb.button_pressed = selected_node.has_bottom_port
+	bot_cb.toggled.connect(func(pressed): selected_node.set_has_bottom_port(pressed))
+	var bot_cp = ColorPickerButton.new()
+	bot_cp.color = selected_node.bottom_port_color
+	bot_cp.custom_minimum_size.x = 40
+	bot_cp.color_changed.connect(func(color): selected_node.set_bottom_port_color(color))
+	bot_hbox.add_child(bot_cb)
+	bot_hbox.add_child(bot_cp)
+	inspector_vbox.add_child(bot_hbox)
+	
+	inspector_vbox.add_child(HSeparator.new())
+	
 	var del_node_btn = Button.new()
 	del_node_btn.text = "このノードを削除"
 	del_node_btn.modulate = Color.INDIAN_RED
@@ -363,6 +399,9 @@ func _serialize_graph() -> Dictionary:
 			if child.graphmock_id == "":
 				child.graphmock_id = _allocate_node_id()
 			node_name_to_id[child.name] = child.graphmock_id
+			# Map satellite nodes as well
+			node_name_to_id[child.name + "_top"] = child.graphmock_id + ":top"
+			node_name_to_id[child.name + "_bottom"] = child.graphmock_id + ":bottom"
 			nodes.append(child.to_save_dict())
 	
 	var connections: Array = []
@@ -430,18 +469,33 @@ func _deserialize_graph(data: Dictionary) -> void:
 		for connection in saved_connections:
 			if not (connection is Dictionary):
 				continue
-			var from_node: MockNode = id_to_node.get(connection.get("from_node_id", ""))
-			var to_node: MockNode = id_to_node.get(connection.get("to_node_id", ""))
-			var from_port := int(connection.get("from_port", -1))
-			var to_port := int(connection.get("to_port", -1))
+			var from_id_raw: String = connection.get("from_node_id", "")
+			var to_id_raw: String = connection.get("to_node_id", "")
+			
+			var from_id_base = from_id_raw.split(":")[0]
+			var to_id_base = to_id_raw.split(":")[0]
+			
+			var from_node: MockNode = id_to_node.get(from_id_base)
+			var to_node: MockNode = id_to_node.get(to_id_base)
+			
 			if from_node == null or to_node == null:
 				continue
+				
+			var from_port := int(connection.get("from_port", -1))
+			var to_port := int(connection.get("to_port", -1))
 			if from_port < 0 or to_port < 0:
 				continue
-			if from_port >= from_node.get_output_port_count() or to_port >= to_node.get_input_port_count():
-				printerr("警告: 無効なポート番号のため接続をスキップしました: %s:%d -> %s:%d" % [from_node.name, from_port, to_node.name, to_port])
-				continue
-			graph_edit.connect_node(from_node.name, from_port, to_node.name, to_port)
+				
+			# Determine actual node names to connect in GraphEdit
+			var from_target_name = from_node.name
+			if from_id_raw.ends_with(":top"): from_target_name += "_top"
+			elif from_id_raw.ends_with(":bottom"): from_target_name += "_bottom"
+			
+			var to_target_name = to_node.name
+			if to_id_raw.ends_with(":top"): to_target_name += "_top"
+			elif to_id_raw.ends_with(":bottom"): to_target_name += "_bottom"
+			
+			graph_edit.connect_node(from_target_name, from_port, to_target_name, to_port)
 	
 	var graph_data = data.get("graph", {})
 	if graph_data is Dictionary:

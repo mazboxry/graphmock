@@ -1,0 +1,185 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0005:top",
+			"from_port": 0,
+			"to_node_id": "node_0004:bottom",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0004:bottom",
+			"from_port": 0,
+			"to_node_id": "node_0005:top",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0005:bottom",
+			"from_port": 0,
+			"to_node_id": "node_0006:top",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0006:top",
+			"from_port": 0,
+			"to_node_id": "node_0005:bottom",
+			"to_port": 0
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			-23.5614624023438,
+			62.5726013183594
+		],
+		"zoom": 1.0
+	},
+	"nodes": [
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0000",
+			"items": [
+				{
+					"name": "ノーコード風の図を描くためのツールです",
+					"prop_type": "string",
+					"type": "property"
+				},
+				{
+					"name": "ゆっくりしていってね",
+					"prop_type": "string",
+					"type": "property"
+				}
+			],
+			"name": "node_0000",
+			"node_color": [
+				0.100000001490116,
+				0.600000023841858,
+				0.800000011920929,
+				0.800000011920929
+			],
+			"position_offset": [
+				320.0,
+				-140.0
+			],
+			"size": [
+				500.000061035156,
+				121.000015258789
+			],
+			"title": "Welcome!",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": true,
+			"has_top_port": false,
+			"id": "node_0004",
+			"items": [],
+			"name": "node_0004",
+			"node_color": [
+				0.449999988079071,
+				0.449999988079071,
+				0.449999988079071,
+				0.800000011920929
+			],
+			"position_offset": [
+				520.0,
+				240.0
+			],
+			"size": [
+				100.0,
+				140.0
+			],
+			"title": "上",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": true,
+			"has_top_port": true,
+			"id": "node_0005",
+			"items": [],
+			"name": "node_0005",
+			"node_color": [
+				0.330000013113022,
+				0.330000013113022,
+				0.330000013113022,
+				0.800000011920929
+			],
+			"position_offset": [
+				520.0,
+				540.0
+			],
+			"size": [
+				140.0,
+				119.999969482422
+			],
+			"title": "中",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": true,
+			"id": "node_0006",
+			"items": [],
+			"name": "node_0006",
+			"node_color": [
+				0.2890625,
+				0.2890625,
+				0.2890625,
+				0.800000011920929
+			],
+			"position_offset": [
+				540.0,
+				780.0
+			],
+			"size": [
+				100.0,
+				80.0
+			],
+			"title": "下",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	],
+	"version": 1
+}
