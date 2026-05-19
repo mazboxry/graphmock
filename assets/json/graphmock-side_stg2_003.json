@@ -1,0 +1,1499 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0008",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0011",
+			"from_port": 0,
+			"to_node_id": "node_0008",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0012",
+			"from_port": 0,
+			"to_node_id": "node_0008",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0006",
+			"from_port": 0,
+			"to_node_id": "node_0010",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0013",
+			"from_port": 0,
+			"to_node_id": "node_0008",
+			"to_port": 2
+		},
+		{
+			"from_node_id": "node_0009",
+			"from_port": 0,
+			"to_node_id": "node_0007",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0014",
+			"from_port": 0,
+			"to_node_id": "node_0007",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0015",
+			"from_port": 0,
+			"to_node_id": "node_0007",
+			"to_port": 2
+		},
+		{
+			"from_node_id": "node_0005",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0007",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0016",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 2
+		},
+		{
+			"from_node_id": "node_0000",
+			"from_port": 0,
+			"to_node_id": "node_0006",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0017",
+			"from_port": 0,
+			"to_node_id": "node_0016",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0018",
+			"from_port": 0,
+			"to_node_id": "node_0009",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0019",
+			"from_port": 0,
+			"to_node_id": "node_0014",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0020",
+			"from_port": 0,
+			"to_node_id": "node_0015",
+			"to_port": 0
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			-451.943023681641,
+			561.552612304688
+		],
+		"zoom": 1.0
+	},
+	"nodes": [
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0005",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "スプライト画像",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "攻撃リスト",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0005",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				460.0,
+				600.0
+			],
+			"size": [
+				213.0,
+				132.0
+			],
+			"title": "自機（CharactorBody2D）",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0011",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/bullet1.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "威力",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "1"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "動き",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "直線"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "貫通",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "OFF"
+				}
+			],
+			"name": "node_0011",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				-60.0,
+				460.0
+			],
+			"size": [
+				149.000030517578,
+				265.0
+			],
+			"title": "自弾1",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0004",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/player.png",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0004",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				140.0,
+				340.0
+			],
+			"size": [
+				176.000122070313,
+				160.0
+			],
+			"title": "自機のスプライト画像",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0007",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的1",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的2",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的3",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0007",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				580.0,
+				960.0
+			],
+			"size": [
+				96.0001220703125,
+				159.0
+			],
+			"title": "標的リスト",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0006",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "ランダムに選んで生成",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0006",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				1240.0,
+				920.0
+			],
+			"size": [
+				244.0,
+				140.0
+			],
+			"title": "標的Spawer",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0010",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0010",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				1480.0,
+				1100.0
+			],
+			"size": [
+				176.0,
+				78.0
+			],
+			"title": "標的インスタンス生成",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0016",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0016",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				880.0,
+				1120.0
+			],
+			"size": [
+				112.0,
+				105.0
+			],
+			"title": "背景",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0017",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/bg1.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0017",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				600.0,
+				1120.0
+			],
+			"size": [
+				160.000122070313,
+				220.0
+			],
+			"title": "1面",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0000",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "自機",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "標的Spawer",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "背景",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0000",
+			"node_color": [
+				0.100000001490116,
+				0.600000023841858,
+				0.800000011920929,
+				0.800000011920929
+			],
+			"position_offset": [
+				1140.0,
+				720.0
+			],
+			"size": [
+				224.0,
+				159.0
+			],
+			"title": "横スクロールシューティング",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0009",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/target1.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "HP",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "1"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "動きパターン",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0009",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				300.0,
+				860.0
+			],
+			"size": [
+				180.0,
+				230.0
+			],
+			"title": "標的1",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0014",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/target2.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "HP",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "1"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "動きパターン",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0014",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				120.0,
+				1240.0
+			],
+			"size": [
+				180.0,
+				230.0
+			],
+			"title": "標的2",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0018",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/screenshot/敵動き1.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0018",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				160.0,
+				940.0
+			],
+			"size": [
+				121.0,
+				160.0
+			],
+			"title": "動き1",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0015",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/target3.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "HP",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "1"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "動きパターン",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0015",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				340.0,
+				1440.0
+			],
+			"size": [
+				180.0,
+				230.0
+			],
+			"title": "標的3",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0008",
+			"image_max_height": 80,
+			"image_path": "",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "初期装備",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "連射時",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "チャージ攻撃",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0008",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				260.0,
+				680.0
+			],
+			"size": [
+				112.0,
+				159.0
+			],
+			"title": "攻撃リスト",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0012",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/bullet2.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "威力",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "2"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "動き",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "3WAY"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "貫通",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "OFF"
+				}
+			],
+			"name": "node_0012",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				-280.0,
+				600.0
+			],
+			"size": [
+				180.0,
+				265.0
+			],
+			"title": "3WAY（連射時)",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0013",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/assets/images/bullet3.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "威力",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "3"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "動き",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "直線"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "貫通",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": "",
+					"value": "ON"
+				}
+			],
+			"name": "node_0013",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				-60.0,
+				800.0
+			],
+			"size": [
+				124.000030517578,
+				265.0
+			],
+			"title": "チャージ弾",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0019",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/screenshot/敵動き2.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0019",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				-20.0,
+				1300.0
+			],
+			"size": [
+				57.0,
+				160.0
+			],
+			"title": "動き2",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0020",
+			"image_max_height": 80,
+			"image_path": "C:/Users/user/Desktop/松井研一/godot/prj46/graphmock/screenshot/敵動き3.png",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"prop_type": "string",
+					"type": "port",
+					"type_annotation": "",
+					"value": ""
+				}
+			],
+			"name": "node_0020",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				180.0,
+				1520.0
+			],
+			"size": [
+				57.0,
+				160.0
+			],
+			"title": "動き2",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	],
+	"version": 1
+}

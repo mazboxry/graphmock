@@ -1,0 +1,287 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0001",
+			"from_port": 0,
+			"to_node_id": "node_0002",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0002",
+			"from_port": 0,
+			"to_node_id": "node_0003",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0005",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 0
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			-45.0,
+			-70.0
+		],
+		"zoom": 1.0
+	},
+	"nodes": [
+		{
+			"id": "node_0003",
+			"items": [
+				{
+					"color": [
+						0.5,
+						0.5,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "最終結果",
+					"type": "port"
+				}
+			],
+			"name": "node_0003",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.400000005960464,
+				0.800000011920929
+			],
+			"position_offset": [
+				700.0,
+				150.0
+			],
+			"size": [
+				200.0,
+				100.0
+			],
+			"title": "最終出力"
+		},
+		{
+			"id": "node_0000",
+			"items": [
+				{
+					"name": "ゆっくりしていってね",
+					"prop_type": "string",
+					"type": "property"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "自機",
+					"type": "port"
+				}
+			],
+			"name": "node_0000",
+			"node_color": [
+				0.100000001490116,
+				0.600000023841858,
+				0.800000011920929,
+				0.800000011920929
+			],
+			"position_offset": [
+				360.0,
+				0.0
+			],
+			"size": [
+				244.0,
+				113.0
+			],
+			"title": "横スクロールシューティング"
+		},
+		{
+			"id": "node_0005",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": true,
+					"name": "画像",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0005",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				160.0,
+				40.0
+			],
+			"size": [
+				160.0,
+				120.0
+			],
+			"title": "自機"
+		},
+		{
+			"id": "node_0001",
+			"items": [
+				{
+					"color": [
+						0.5,
+						1.0,
+						0.5,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "データ出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0001",
+			"node_color": [
+				0.200000002980232,
+				0.400000005960464,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				160.0,
+				320.0
+			],
+			"size": [
+				200.0,
+				100.0
+			],
+			"title": "入力ソース"
+		},
+		{
+			"id": "node_0002",
+			"items": [
+				{
+					"color": [
+						0.5,
+						1.0,
+						0.5,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"name": "変換倍率",
+					"prop_type": "number",
+					"type": "property"
+				},
+				{
+					"color": [
+						0.5,
+						0.5,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0002",
+			"node_color": [
+				0.400000005960464,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				460.0,
+				340.0
+			],
+			"size": [
+				200.0,
+				150.0
+			],
+			"title": "ロジック変換"
+		},
+		{
+			"id": "node_0004",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"name": "画像",
+					"prop_type": "string",
+					"type": "property"
+				}
+			],
+			"name": "node_0004",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				0.0,
+				40.0
+			],
+			"size": [
+				124.0,
+				140.0
+			],
+			"title": "画像"
+		}
+	],
+	"version": 1
+}

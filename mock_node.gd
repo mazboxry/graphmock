@@ -13,6 +13,9 @@ var bottom_port_color: Color = Color.WHITE
 
 var _top_satellite: GraphNode = null
 var _bottom_satellite: GraphNode = null
+var image_path: String = ""
+var base_dir: String = ""
+var image_max_height: int = 80
 
 func _ready():
 	# Let GraphEdit handle dragging and resizing
@@ -24,11 +27,19 @@ func _ready():
 func _process(_delta):
 	_sync_satellites()
 
+func _exit_tree():
+	if _top_satellite and is_instance_valid(_top_satellite):
+		_top_satellite.queue_free()
+		_top_satellite = null
+	if _bottom_satellite and is_instance_valid(_bottom_satellite):
+		_bottom_satellite.queue_free()
+		_bottom_satellite = null
+
 func _sync_satellites():
 	if _top_satellite and is_instance_valid(_top_satellite):
-		_top_satellite.position_offset = position_offset + Vector2((size.x - _top_satellite.size.x) / 2, -_top_satellite.size.y - 4)
+		_top_satellite.position_offset = position_offset + Vector2((size.x - _top_satellite.size.x) / 2, -_top_satellite.size.y + 12)
 	if _bottom_satellite and is_instance_valid(_bottom_satellite):
-		_bottom_satellite.position_offset = position_offset + Vector2((size.x - _bottom_satellite.size.x) / 2, size.y + 4)
+		_bottom_satellite.position_offset = position_offset + Vector2((size.x - _bottom_satellite.size.x) / 2, size.y - 12)
 
 func set_has_top_port(enabled: bool):
 	has_top_port = enabled
@@ -137,7 +148,9 @@ func to_save_dict() -> Dictionary:
 		"has_top_port": has_top_port,
 		"has_bottom_port": has_bottom_port,
 		"top_port_color": _color_to_array(top_port_color),
-		"bottom_port_color": _color_to_array(bottom_port_color)
+		"bottom_port_color": _color_to_array(bottom_port_color),
+		"image_path": image_path,
+		"image_max_height": image_max_height
 	}
 
 func from_save_dict(data: Dictionary) -> void:
@@ -146,6 +159,8 @@ func from_save_dict(data: Dictionary) -> void:
 	title = str(data.get("title", "ノード"))
 	position_offset = _array_to_vector2(data.get("position_offset", [0.0, 0.0]))
 	node_color = _array_to_color(data.get("node_color", [0.2, 0.2, 0.2, 0.8]))
+	image_path = str(data.get("image_path", ""))
+	image_max_height = int(data.get("image_max_height", 80))
 	
 	items.clear()
 	var saved_items = data.get("items", [])
@@ -155,6 +170,18 @@ func from_save_dict(data: Dictionary) -> void:
 				var item: Dictionary = saved_item.duplicate(true)
 				if item.has("color"):
 					item["color"] = _array_to_color(item["color"])
+				else:
+					item["color"] = Color.WHITE
+				if not item.has("is_input"):
+					item["is_input"] = false
+				if not item.has("is_output"):
+					item["is_output"] = false
+				if not item.has("type_annotation"):
+					item["type_annotation"] = ""
+				if not item.has("prop_type"):
+					item["prop_type"] = "string"
+				if not item.has("value"):
+					item["value"] = "" if item["prop_type"] == "string" else 0.0
 				items.append(item)
 	
 	_update_visuals()
@@ -190,7 +217,12 @@ func add_property(prop_name: String, prop_type: String = "string"):
 	items.append({
 		"type": "property",
 		"name": prop_name,
-		"prop_type": prop_type
+		"prop_type": prop_type,
+		"is_input": false,
+		"is_output": false,
+		"color": Color.WHITE,
+		"type_annotation": "",
+		"value": "" if prop_type == "string" else 0.0
 	})
 	_rebuild_ui()
 
@@ -216,8 +248,23 @@ func _rebuild_ui():
 		remove_child(child)
 		child.queue_free()
 	
+	var slot_offset = 0
+	if image_path != "":
+		var tex = load_external_texture(image_path, base_dir)
+		if tex:
+			var tr = TextureRect.new()
+			tr.texture = tex
+			tr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			tr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			tr.custom_minimum_size.y = image_max_height
+			tr.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			add_child(tr)
+			set_slot(0, false, 0, Color.WHITE, false, 0, Color.WHITE)
+			slot_offset = 1
+	
 	for i in range(items.size()):
 		var item = items[i]
+		var child_idx = i + slot_offset
 		if item["type"] == "port":
 			var label = Label.new()
 			label.text = item["name"]
@@ -229,33 +276,101 @@ func _rebuild_ui():
 				label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			add_child(label)
 			
-			set_slot(i, 
+			set_slot(child_idx, 
 				item["is_input"], 0, item["color"], 
 				item["is_output"], 0, item["color"])
 		elif item["type"] == "property":
 			var hbox = HBoxContainer.new()
 			var label = Label.new()
-			label.text = item["name"]
+			
+			var display_name = item["name"]
+			var type_annot = item.get("type_annotation", "")
+			if type_annot != "":
+				display_name += ": " + type_annot
+			label.text = display_name
+			
 			label.custom_minimum_size.x = 40
 			hbox.add_child(label)
-			if item["prop_type"] == "string":
+			
+			var prop_val = item.get("value", "" if item.get("prop_type", "string") == "string" else 0.0)
+			
+			if item.get("prop_type", "string") == "string":
 				var le = LineEdit.new()
+				le.text = str(prop_val)
 				le.expand_to_text_length = true
 				le.custom_minimum_size.x = 60
 				le.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				le.text_changed.connect(func(text):
+					item["value"] = text
+				)
 				hbox.add_child(le)
-			elif item["prop_type"] == "number":
+			elif item.get("prop_type", "string") == "number":
 				var sb = SpinBox.new()
+				sb.min_value = -999999
+				sb.max_value = 999999
+				sb.step = 0.01
+				sb.allow_greater = true
+				sb.allow_lesser = true
+				sb.value = float(prop_val)
 				sb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				sb.value_changed.connect(func(val):
+					item["value"] = val
+				)
 				hbox.add_child(sb)
 			add_child(hbox)
-			set_slot(i, false, 0, Color.WHITE, false, 0, Color.WHITE)
+			
+			var is_in = item.get("is_input", false)
+			var is_out = item.get("is_output", false)
+			var slot_color = item.get("color", Color.WHITE)
+			set_slot(child_idx, is_in, 0, slot_color, is_out, 0, slot_color)
 			
 	# Emit a signal or update size so GraphEdit layout updates
 	reset_size()
 
 func _update_visuals():
 	set_node_color(node_color)
+
+func set_image_path(new_path: String):
+	image_path = new_path
+	_rebuild_ui()
+
+func set_image_max_height(new_height: int):
+	image_max_height = new_height
+	_rebuild_ui()
+
+static func load_external_texture(path_str: String, base_dir_str: String = "") -> Texture2D:
+	if path_str == "":
+		return null
+	
+	# 1. Try local filesystem if possible
+	var paths_to_try: Array[String] = []
+	if base_dir_str != "":
+		paths_to_try.append(base_dir_str.path_join(path_str))
+		paths_to_try.append(base_dir_str.path_join("images").path_join(path_str))
+	paths_to_try.append(path_str)
+	paths_to_try.append("images".path_join(path_str))
+	paths_to_try.append("res://".path_join(path_str))
+	paths_to_try.append("res://images/".path_join(path_str))
+	
+	for path in paths_to_try:
+		if not path.begins_with("res://") and FileAccess.file_exists(path):
+			var img = Image.load_from_file(path)
+			if img and not img.is_empty():
+				return ImageTexture.create_from_image(img)
+	
+	# 2. Try ResourceLoader for packed assets / Web export
+	var res_paths = [
+		path_str,
+		"res://".path_join(path_str),
+		"res://images/".path_join(path_str)
+	]
+	for rp in res_paths:
+		if rp.begins_with("res://") and ResourceLoader.exists(rp):
+			var res = load(rp)
+			if res is Texture2D:
+				return res
+	
+	return null
 
 static func _color_to_array(color: Color) -> Array:
 	return [color.r, color.g, color.b, color.a]

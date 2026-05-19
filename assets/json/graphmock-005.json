@@ -1,0 +1,647 @@
+{
+	"connections": [
+		{
+			"from_node_id": "node_0004",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0005",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0008",
+			"from_port": 0,
+			"to_node_id": "node_0005",
+			"to_port": 1
+		},
+		{
+			"from_node_id": "node_0009",
+			"from_port": 0,
+			"to_node_id": "node_0007",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0000",
+			"from_port": 0,
+			"to_node_id": "node_0006",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0006",
+			"from_port": 0,
+			"to_node_id": "node_0010",
+			"to_port": 0
+		},
+		{
+			"from_node_id": "node_0007",
+			"from_port": 0,
+			"to_node_id": "node_0000",
+			"to_port": 1
+		}
+	],
+	"graph": {
+		"scroll_offset": [
+			-82.0,
+			468.0
+		],
+		"zoom": 1.0
+	},
+	"nodes": [
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0004",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "画像",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": ""
+				}
+			],
+			"name": "node_0004",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				180.0,
+				620.0
+			],
+			"size": [
+				176.0,
+				86.0
+			],
+			"title": "自機のスプライト画像",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0005",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "スプライト画像",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "攻撃リスト",
+					"type": "port"
+				}
+			],
+			"name": "node_0005",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				460.0,
+				600.0
+			],
+			"size": [
+				213.0,
+				132.0
+			],
+			"title": "自機（CharactorBody2D）",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0000",
+			"items": [
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "ゆっくりしていってね",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "自機",
+					"type": "port",
+					"type_annotation": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "標的Spawer",
+					"type": "port"
+				}
+			],
+			"name": "node_0000",
+			"node_color": [
+				0.100000001490116,
+				0.600000023841858,
+				0.800000011920929,
+				0.800000011920929
+			],
+			"position_offset": [
+				760.0,
+				560.0
+			],
+			"size": [
+				244.0,
+				167.0
+			],
+			"title": "横スクロールシューティング",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0006",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				}
+			],
+			"name": "node_0006",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				1140.0,
+				640.0
+			],
+			"size": [
+				112.0,
+				105.0
+			],
+			"title": "標的Spawer",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0010",
+			"items": [
+				{
+					"color": [
+						0.0,
+						1.0,
+						0.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				}
+			],
+			"name": "node_0010",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				1300.0,
+				660.0
+			],
+			"size": [
+				176.0,
+				78.0
+			],
+			"title": "標的インスタンス生成",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0007",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的1",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "標的2",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				}
+			],
+			"name": "node_0007",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				540.0,
+				860.0
+			],
+			"size": [
+				96.0,
+				213.0
+			],
+			"title": "標的リスト",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0008",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": true,
+					"is_output": false,
+					"name": "入力",
+					"type": "port"
+				}
+			],
+			"name": "node_0008",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				180.0,
+				720.0
+			],
+			"size": [
+				96.0,
+				159.0
+			],
+			"title": "攻撃リスト",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"bottom_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			],
+			"has_bottom_port": false,
+			"has_top_port": false,
+			"id": "node_0009",
+			"items": [
+				{
+					"color": [
+						0.0,
+						0.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": true,
+					"name": "出力",
+					"type": "port"
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "画像",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "HP",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": ""
+				},
+				{
+					"color": [
+						1.0,
+						1.0,
+						1.0,
+						1.0
+					],
+					"is_input": false,
+					"is_output": false,
+					"name": "動きパターン",
+					"prop_type": "string",
+					"type": "property",
+					"type_annotation": ""
+				}
+			],
+			"name": "node_0009",
+			"node_color": [
+				0.200000002980232,
+				0.200000002980232,
+				0.200000002980232,
+				0.800000011920929
+			],
+			"position_offset": [
+				300.0,
+				880.0
+			],
+			"size": [
+				180.0,
+				183.0
+			],
+			"title": "標的1",
+			"top_port_color": [
+				1.0,
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	],
+	"version": 1
+}

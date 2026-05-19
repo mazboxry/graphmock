@@ -15,7 +15,9 @@ var next_node_id := 1
 var status_label: Label
 var export_dialog: FileDialog
 var import_dialog: FileDialog
+var image_dialog: FileDialog
 var web_import_callback
+var current_json_dir: String = ""
 
 func _ready():
 	_apply_app_theme()
@@ -93,6 +95,28 @@ func _setup_file_dialogs() -> void:
 	import_dialog.filters = PackedStringArray(["*.json ; JSON"])
 	import_dialog.file_selected.connect(_on_import_file_selected)
 	add_child(import_dialog)
+	
+	image_dialog = FileDialog.new()
+	image_dialog.title = "画像を選択"
+	image_dialog.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	image_dialog.access = FileDialog.ACCESS_FILESYSTEM
+	image_dialog.filters = PackedStringArray(["*.png, *.jpg, *.jpeg, *.webp ; Images"])
+	image_dialog.file_selected.connect(_on_image_file_selected)
+	add_child(image_dialog)
+
+func _on_image_file_selected(path: String) -> void:
+	if not selected_node:
+		return
+	var relative_path = path
+	if current_json_dir != "":
+		var base_dir = current_json_dir.replace("\\", "/")
+		var target_path = path.replace("\\", "/")
+		if target_path.begins_with(base_dir):
+			relative_path = target_path.trim_prefix(base_dir)
+			if relative_path.begins_with("/"):
+				relative_path = relative_path.substr(1)
+	selected_node.set_image_path(relative_path)
+	_build_inspector()
 
 func _on_add_node_pressed():
 	var node = _create_mock_node()
@@ -112,6 +136,7 @@ func _create_mock_node() -> MockNode:
 	var node := MockNode.new()
 	node.graphmock_id = _allocate_node_id()
 	node.name = node.graphmock_id
+	node.base_dir = current_json_dir
 	return node
 
 func _allocate_node_id() -> String:
@@ -148,17 +173,48 @@ func _on_delete_nodes_request(nodes: Array[StringName]):
 			_delete_node(node)
 
 func _delete_node(node: Node):
-	# Disconnect all connections related to this node
-	var node_name = node.name
-	for c in graph_edit.get_connection_list():
-		if c["from_node"] == node_name or c["to_node"] == node_name:
-			graph_edit.disconnect_node(c["from_node"], c["from_port"], c["to_node"], c["to_port"])
+	# Disconnect all connections related to this node and its satellites
+	var names_to_disconnect = [node.name]
+	if node is MockNode:
+		names_to_disconnect.append(node.name + "_top")
+		names_to_disconnect.append(node.name + "_bottom")
+	
+	for node_name in names_to_disconnect:
+		for c in graph_edit.get_connection_list():
+			if c["from_node"] == node_name or c["to_node"] == node_name:
+				graph_edit.disconnect_node(c["from_node"], c["from_port"], c["to_node"], c["to_port"])
 	
 	if node == selected_node:
 		selected_node = null
 		_clear_inspector()
 	
 	node.queue_free()
+
+func _on_duplicate_node_pressed(node: MockNode):
+	if not node:
+		return
+	var data = node.to_save_dict()
+	var new_id = _allocate_node_id()
+	data["id"] = new_id
+	data["name"] = new_id
+	
+	# Shift position slightly
+	var pos = MockNode._array_to_vector2(data.get("position_offset", [0.0, 0.0]))
+	pos += Vector2(40, 40)
+	data["position_offset"] = MockNode._vector2_to_array(pos)
+	
+	var dup := MockNode.new()
+	dup.base_dir = current_json_dir
+	dup.from_save_dict(data)
+	
+	graph_edit.add_child(dup)
+	
+	# Deselect old and select new
+	node.selected = false
+	dup.selected = true
+	selected_node = dup
+	_build_inspector()
+	_set_status("ノードを複製しました")
 
 func _clear_inspector():
 	for child in inspector_vbox.get_children():
@@ -236,11 +292,63 @@ func _build_inspector():
 	
 	inspector_vbox.add_child(HSeparator.new())
 	
+	var action_node_hbox = HBoxContainer.new()
+	
+	var dup_node_btn = Button.new()
+	dup_node_btn.text = "このノードを複製"
+	dup_node_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	dup_node_btn.pressed.connect(func(): _on_duplicate_node_pressed(selected_node))
+	action_node_hbox.add_child(dup_node_btn)
+	
 	var del_node_btn = Button.new()
-	del_node_btn.text = "このノードを削除"
+	del_node_btn.text = "削除"
 	del_node_btn.modulate = Color.INDIAN_RED
 	del_node_btn.pressed.connect(func(): _delete_node(selected_node))
-	inspector_vbox.add_child(del_node_btn)
+	action_node_hbox.add_child(del_node_btn)
+	
+	inspector_vbox.add_child(action_node_hbox)
+	
+	# Node Image UI
+	inspector_vbox.add_child(HSeparator.new())
+	var img_lbl = Label.new()
+	img_lbl.text = "ノード画像"
+	inspector_vbox.add_child(img_lbl)
+	
+	var img_hbox = HBoxContainer.new()
+	var img_le = LineEdit.new()
+	img_le.text = selected_node.image_path
+	img_le.placeholder_text = "例: images/001.jpg"
+	img_le.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	img_le.text_changed.connect(func(text):
+		selected_node.set_image_path(text)
+	)
+	img_hbox.add_child(img_le)
+	
+	var img_btn = Button.new()
+	img_btn.text = "選択"
+	img_btn.pressed.connect(func():
+		image_dialog.popup_centered_ratio(0.6)
+	)
+	img_hbox.add_child(img_btn)
+	inspector_vbox.add_child(img_hbox)
+	
+	# Image Height UI
+	var height_hbox = HBoxContainer.new()
+	var height_lbl = Label.new()
+	height_lbl.text = "画像高さ(px):"
+	height_hbox.add_child(height_lbl)
+	
+	var height_sb = SpinBox.new()
+	height_sb.min_value = 20
+	height_sb.max_value = 300
+	height_sb.step = 5
+	height_sb.value = selected_node.image_max_height
+	height_sb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	height_sb.value_changed.connect(func(value):
+		selected_node.set_image_max_height(int(value))
+	)
+	height_hbox.add_child(height_sb)
+	inspector_vbox.add_child(height_hbox)
 	
 	inspector_vbox.add_child(HSeparator.new())
 	
@@ -294,6 +402,38 @@ func _build_inspector():
 		)
 		row1.add_child(del_btn)
 		
+		var up_btn = Button.new()
+		up_btn.text = "▲"
+		up_btn.disabled = (i == 0)
+		up_btn.pressed.connect(func():
+			var node_name = selected_node.name
+			for c in graph_edit.get_connection_list():
+				if c["from_node"] == node_name or c["to_node"] == node_name:
+					graph_edit.disconnect_node(c["from_node"], c["from_port"], c["to_node"], c["to_port"])
+			var temp = selected_node.items[i]
+			selected_node.items[i] = selected_node.items[i - 1]
+			selected_node.items[i - 1] = temp
+			selected_node._rebuild_ui()
+			_build_inspector()
+		)
+		row1.add_child(up_btn)
+		
+		var down_btn = Button.new()
+		down_btn.text = "▼"
+		down_btn.disabled = (i == selected_node.items.size() - 1)
+		down_btn.pressed.connect(func():
+			var node_name = selected_node.name
+			for c in graph_edit.get_connection_list():
+				if c["from_node"] == node_name or c["to_node"] == node_name:
+					graph_edit.disconnect_node(c["from_node"], c["from_port"], c["to_node"], c["to_port"])
+			var temp = selected_node.items[i]
+			selected_node.items[i] = selected_node.items[i + 1]
+			selected_node.items[i + 1] = temp
+			selected_node._rebuild_ui()
+			_build_inspector()
+		)
+		row1.add_child(down_btn)
+		
 		var type_lbl = Label.new()
 		type_lbl.text = "ソケット" if item["type"] == "port" else "プロパティ"
 		row1.add_child(type_lbl)
@@ -339,6 +479,99 @@ func _build_inspector():
 			row2.add_child(cp)
 			item_vbox.add_child(row2)
 			
+		elif item["type"] == "property":
+			var row2 = HBoxContainer.new()
+			
+			var in_cb = CheckBox.new()
+			in_cb.text = "入力"
+			in_cb.button_pressed = item.get("is_input", false)
+			in_cb.toggled.connect(func(pressed):
+				selected_node.items[i]["is_input"] = pressed
+				selected_node._rebuild_ui()
+			)
+			row2.add_child(in_cb)
+			
+			var out_cb = CheckBox.new()
+			out_cb.text = "出力"
+			out_cb.button_pressed = item.get("is_output", false)
+			out_cb.toggled.connect(func(pressed):
+				selected_node.items[i]["is_output"] = pressed
+				selected_node._rebuild_ui()
+			)
+			row2.add_child(out_cb)
+			
+			var cp = ColorPickerButton.new()
+			cp.color = item.get("color", Color.WHITE)
+			cp.custom_minimum_size.x = 40
+			cp.color_changed.connect(func(color):
+				selected_node.items[i]["color"] = color
+				selected_node._rebuild_ui()
+			)
+			row2.add_child(cp)
+			
+			var annot_lbl = Label.new()
+			annot_lbl.text = "型:"
+			row2.add_child(annot_lbl)
+			
+			var annot_le = LineEdit.new()
+			annot_le.text = item.get("type_annotation", "")
+			annot_le.placeholder_text = "例: int"
+			annot_le.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			annot_le.text_changed.connect(func(text):
+				selected_node.items[i]["type_annotation"] = text
+				selected_node._rebuild_ui()
+			)
+			row2.add_child(annot_le)
+			item_vbox.add_child(row2)
+			
+			var row3 = HBoxContainer.new()
+			var type_lbl_opt = Label.new()
+			type_lbl_opt.text = "種別:"
+			row3.add_child(type_lbl_opt)
+			
+			var type_opt = OptionButton.new()
+			type_opt.add_item("文字列")
+			type_opt.add_item("数値")
+			type_opt.selected = 0 if item.get("prop_type", "string") == "string" else 1
+			type_opt.item_selected.connect(func(idx):
+				var new_type = "string" if idx == 0 else "number"
+				selected_node.items[i]["prop_type"] = new_type
+				selected_node.items[i]["value"] = "" if new_type == "string" else 0.0
+				selected_node._rebuild_ui()
+				_build_inspector()
+			)
+			row3.add_child(type_opt)
+			
+			var val_lbl = Label.new()
+			val_lbl.text = " 値:"
+			row3.add_child(val_lbl)
+			
+			if item.get("prop_type", "string") == "string":
+				var val_le = LineEdit.new()
+				val_le.text = str(item.get("value", ""))
+				val_le.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				val_le.text_changed.connect(func(text):
+					selected_node.items[i]["value"] = text
+					selected_node._rebuild_ui()
+				)
+				row3.add_child(val_le)
+			else:
+				var val_sb = SpinBox.new()
+				val_sb.min_value = -999999
+				val_sb.max_value = 999999
+				val_sb.step = 0.01
+				val_sb.allow_greater = true
+				val_sb.allow_lesser = true
+				val_sb.value = float(item.get("value", 0.0))
+				val_sb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+				val_sb.value_changed.connect(func(val):
+					selected_node.items[i]["value"] = val
+					selected_node._rebuild_ui()
+				)
+				row3.add_child(val_sb)
+			
+			item_vbox.add_child(row3)
+			
 		inspector_vbox.add_child(item_vbox)
 		inspector_vbox.add_child(HSeparator.new())
 
@@ -371,10 +604,12 @@ func _on_import_pressed() -> void:
 		import_dialog.popup_centered_ratio(0.6)
 
 func _on_export_file_selected(path: String) -> void:
+	current_json_dir = path.get_base_dir()
 	var result := _write_text_file(path, _serialize_graph_text())
 	_set_status("JSONを書き出しました" if result == OK else "JSON書き出しに失敗しました")
 
 func _on_import_file_selected(path: String) -> void:
+	current_json_dir = path.get_base_dir()
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		_set_status("JSON読込に失敗しました")
@@ -456,6 +691,7 @@ func _deserialize_graph(data: Dictionary) -> void:
 			if not (node_data is Dictionary):
 				continue
 			var node := MockNode.new()
+			node.base_dir = current_json_dir
 			node.from_save_dict(node_data)
 			if node.graphmock_id == "":
 				node.graphmock_id = _allocate_node_id()
